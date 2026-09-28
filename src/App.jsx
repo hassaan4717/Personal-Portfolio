@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import photoImg from '../images/Photo.png'; 
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight,
@@ -216,7 +217,7 @@ function App() {
                     <div className="relative z-10 flex flex-col items-center gap-4">
                       <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-2 shadow-soft">
                         <img
-                          src="/images/Photo.png"
+                          src={photoImg}
                           alt="Muhammad Hassaan Masood"
                           className="h-56 w-52 rounded-xl object-cover object-top sm:h-64 sm:w-56"
                         />
