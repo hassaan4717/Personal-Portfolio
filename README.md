@@ -1,4 +1,5 @@
-﻿# Muhammad Hassaan Masood | Research Portfolio (https://personal-portfolio-sepia-sigma-86.vercel.app/)
+﻿# Muhammad Hassaan Masood | Research Portfolio 
+ (https://muhammad-hassaan-masood-portfolio.vercel.app/))
 
 A premium research-oriented personal portfolio built with Vite, React, and Tailwind CSS for showcasing machine learning, computer vision, video understanding, multimodal AI, and scientific ML work.
 
