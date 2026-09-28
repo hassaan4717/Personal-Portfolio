@@ -173,6 +173,41 @@ export const projects = [
     timeline: 'Frontend → State Machine → API Layer → Database → Delivery Workflow',
     highlights: ['Vue 3', 'Vue Router', 'XState', 'authentication'],
   },
+  {
+    id: 'sql-compiler-construction',
+    number: '10',
+    title: 'SQL Compiler Construction',
+    subtitle: 'A Modular SQL-Like Language Compiler and Interactive Compilation Dashboard',
+    category: 'Compiler Construction',
+    categories: ['Compiler Construction', 'Programming Languages', 'Software Engineering', 'Systems', 'Language Processing'],
+    description:
+      'A modular educational compiler for a restricted SQL-like language that demonstrates the complete compilation pipeline from lexical analysis and parsing through semantic analysis, intermediate-code generation, and optimization, with an interactive browser dashboard for inspecting each stage.',
+    researchQuestion:
+      'How can core compiler-construction techniques be used to translate a restricted SQL-like language into semantically checked, optimized intermediate code while making each compilation phase observable?',
+    technologies: ['Python', 'React', 'Vite', 'Flask', 'AST', 'TAC'],
+    github: 'https://github.com/hassaan4717/SQL-Compiler-Construction',
+    overview:
+      'A modular compiler construction project demonstrating the major stages involved in translating a restricted SQL-like language into optimized intermediate representation.',
+    technicalQuestion:
+      'How can a modular compilation pipeline make lexical, syntactic, semantic, intermediate-code, and optimization stages explicit and inspectable?',
+    pipeline: 'Lexer → Parser → Semantic Analyzer → TAC Generator → Optimizer',
+    keyComponents: ['Lexer', 'Parser', 'AST', 'Symbol Table', 'Semantic Analyzer', 'TAC Generator', 'Optimizer', 'React Dashboard', 'Flask Service'],
+    supportedLanguageFeatures: 'CREATE TABLE, INSERT, SELECT, UPDATE, DELETE, expressions, filtering, joins, ordering, limits, and aggregate functions within the project\'s defined language subset.',
+    optimization: ['constant folding', 'constant propagation', 'dead-code cleanup'],
+    testing: 'The repository includes integrated and component-level tests covering the compiler pipeline and its individual phases.',
+    completion: 'March 20, 2026',
+    featured: false,
+    visualType: 'compiler',
+    timeline: 'SQL-like Source → Lexer → Tokens → Parser → AST → Semantic Analyzer → Symbol Table + Diagnostics → Three-Address Code Generator → Optimizer → Optimized Intermediate Code',
+    highlights: [
+      'Regular-expression-based lexical analysis',
+      'Recursive-descent parser and AST construction',
+      'Symbol tables and semantic type checking',
+      'Three-address code generation with TAC optimization',
+      'Constant folding, propagation, and dead-code cleanup',
+      'React + Flask dashboard for inspecting each compilation stage',
+    ],
+  },
 ];
 
 export const projectFilters = [
@@ -186,4 +221,5 @@ export const projectFilters = [
   'Knowledge / RAG',
   'AI Systems',
   'Software Engineering',
+  'Compiler Construction',
 ];

@@ -81,7 +81,8 @@ function App() {
       if (activeFilter === 'Scientific ML') return project.categories.includes('Scientific Machine Learning');
       if (activeFilter === 'Knowledge / RAG') return project.categories.some((tag) => tag.includes('RAG') || tag.includes('Knowledge'));
       if (activeFilter === 'AI Systems') return project.categories.some((tag) => tag.includes('LLM') || tag.includes('Agent') || tag.includes('AI'));
-      if (activeFilter === 'Software Engineering') return project.category === 'Software Engineering';
+      if (activeFilter === 'Software Engineering') return project.category === 'Software Engineering' || project.categories.includes('Software Engineering');
+      if (activeFilter === 'Compiler Construction') return project.categories.includes('Compiler Construction') || project.category === 'Compiler Construction';
       return false;
     });
   }, [activeFilter]);
@@ -447,7 +448,7 @@ function App() {
 
                       <div className="mt-6 flex flex-wrap items-center gap-3">
                         <button onClick={() => setSelectedProject(project)} className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-medium text-slate-950 transition hover:bg-slate-200">
-                          Explore Project <ArrowRight size={14} />
+                          View Project <ArrowRight size={14} />
                         </button>
                         <a href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-xs font-medium text-slate-200 transition hover:border-accent/50 hover:text-white">
                           <Github size={14} /> GitHub
@@ -500,10 +501,10 @@ function App() {
 
                 <div className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
                   <div className="rounded-2xl border border-white/10 bg-[radial-gradient(circle_at_top,_rgba(120,169,255,0.12),_rgba(15,23,42,0.9)_40%,_rgba(2,6,20,1)_100%)] p-4">
-                    <div className="mb-3 text-[10px] tracking-[0.2em] text-slate-400 uppercase">Research Question</div>
-                    <p className="text-sm leading-7 text-slate-200">{selectedProject.researchQuestion}</p>
+                    <div className="mb-3 text-[10px] tracking-[0.2em] text-slate-400 uppercase">{selectedProject.technicalQuestion ? 'Technical Question' : 'Research Question'}</div>
+                    <p className="text-sm leading-7 text-slate-200">{selectedProject.technicalQuestion || selectedProject.researchQuestion}</p>
                     <div className="mt-6 space-y-3">
-                      {selectedProject.timeline.split('→').map((line) => (
+                      {(selectedProject.pipeline ? selectedProject.pipeline.split('→') : selectedProject.timeline.split('→')).map((line) => (
                         <div key={line} className="rounded-xl border border-white/10 bg-slate-950/40 px-3 py-2 text-[10px] uppercase tracking-[0.12em] text-slate-200">{line.trim()}</div>
                       ))}
                     </div>
@@ -512,16 +513,46 @@ function App() {
                   <div className="space-y-5 text-sm leading-7 text-slate-300">
                     <div>
                       <div className="mb-2 text-[10px] tracking-[0.2em] text-slate-400 uppercase">Overview</div>
-                      <p>{selectedProject.description}</p>
+                      <p>{selectedProject.overview || selectedProject.description}</p>
                     </div>
-                    <div>
-                      <div className="mb-2 text-[10px] tracking-[0.2em] text-slate-400 uppercase">Methodology</div>
-                      <ul className="space-y-2">
-                        {selectedProject.highlights.map((point) => (
-                          <li key={point} className="flex items-start gap-2"><Check size={14} className="mt-1 text-accent" />{point}</li>
-                        ))}
-                      </ul>
-                    </div>
+                    {selectedProject.keyComponents && (
+                      <div>
+                        <div className="mb-2 text-[10px] tracking-[0.2em] text-slate-400 uppercase">Key Components</div>
+                        <ul className="space-y-2">
+                          {selectedProject.keyComponents.map((point) => (
+                            <li key={point} className="flex items-start gap-2"><Check size={14} className="mt-1 text-accent" />{point}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {!selectedProject.keyComponents && (
+                      <div>
+                        <div className="mb-2 text-[10px] tracking-[0.2em] text-slate-400 uppercase">Methodology</div>
+                        <ul className="space-y-2">
+                          {selectedProject.highlights.map((point) => (
+                            <li key={point} className="flex items-start gap-2"><Check size={14} className="mt-1 text-accent" />{point}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {selectedProject.supportedLanguageFeatures && (
+                      <div>
+                        <div className="mb-2 text-[10px] tracking-[0.2em] text-slate-400 uppercase">Supported Language Features</div>
+                        <p>{selectedProject.supportedLanguageFeatures}</p>
+                      </div>
+                    )}
+                    {selectedProject.optimization && (
+                      <div>
+                        <div className="mb-2 text-[10px] tracking-[0.2em] text-slate-400 uppercase">Optimization</div>
+                        <p>{selectedProject.optimization.join(', ')}</p>
+                      </div>
+                    )}
+                    {selectedProject.testing && (
+                      <div>
+                        <div className="mb-2 text-[10px] tracking-[0.2em] text-slate-400 uppercase">Testing</div>
+                        <p>{selectedProject.testing}</p>
+                      </div>
+                    )}
                     <div>
                       <div className="mb-2 text-[10px] tracking-[0.2em] text-slate-400 uppercase">Technologies</div>
                       <div className="flex flex-wrap gap-2">
@@ -530,6 +561,12 @@ function App() {
                         ))}
                       </div>
                     </div>
+                    {selectedProject.completion && (
+                      <div>
+                        <div className="mb-2 text-[10px] tracking-[0.2em] text-slate-400 uppercase">Completion</div>
+                        <p>{selectedProject.completion}</p>
+                      </div>
+                    )}
                     <div className="flex flex-wrap gap-3">
                       <a href={selectedProject.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-medium text-slate-950">GitHub <ExternalLink size={14} /></a>
                       <button onClick={() => setSelectedProject(null)} className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-xs font-medium text-slate-200">Close</button>
