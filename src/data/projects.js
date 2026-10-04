@@ -11,7 +11,7 @@ export const projects = [
     researchQuestion:
       'How can an intelligent surveillance pipeline remain robust under lighting variation, occlusion, camera angle shifts, and deployment constraints in real-world retail environments?',
     technologies: ['PyTorch', 'YOLOv8', 'DeepSORT', 'OSNet', 'X3D', 'FAISS', 'OpenCV'],
-    github: 'https://github.com/hassaan4717/Theft-Sentinel',
+    github: 'https://github.com/hassaan4717/Theft_Sentinel',
     featured: true,
     visualType: 'surveillance',
     timeline: 'Live Feed → RTSP → YOLOv8 → DeepSORT → OSNet → FAISS → X3D → Alert',
